@@ -10,10 +10,7 @@ class AddressBook {
             throw new Error("Invalid contact. Must be an instance of Contact class.");
         }
 
-<<<<<<< HEAD
-        // **UC6: Prevent duplicate entries**
-=======
->>>>>>> UC8
+
         let duplicate = this.contacts.some(
             (c) => c.firstName === contact.firstName && c.lastName === contact.lastName
         );
@@ -56,7 +53,7 @@ class AddressBook {
             console.log(`Contacts in state ${state}:`);
             contactsInState.forEach(contact => console.log(contact.toString()));
         }
-<<<<<<< HEAD
+
 
         this.contacts.splice(index, 1);
         console.log(`Contact ${firstName} ${lastName} deleted successfully!`);
@@ -65,8 +62,41 @@ class AddressBook {
     countContacts() {
         console.log(`Total Contacts: ${this.contacts.length}`);
         return this.contacts.length;
-=======
->>>>>>> UC8
+
+
+    viewContactsByCity() {
+        let cityMap = new Map();
+
+        this.contacts.forEach(contact => {
+            if (!cityMap.has(contact.city)) {
+                cityMap.set(contact.city, []);
+            }
+            cityMap.get(contact.city).push(contact.toString());
+        });
+
+        console.log("\nContacts grouped by City:");
+        cityMap.forEach((contacts, city) => {
+            console.log(`\nCity: ${city}`);
+            contacts.forEach(contact => console.log(contact));
+        });
+    }
+
+    viewContactsByState() {
+        let stateMap = new Map();
+
+        this.contacts.forEach(contact => {
+            if (!stateMap.has(contact.state)) {
+                stateMap.set(contact.state, []);
+            }
+            stateMap.get(contact.state).push(contact.toString());
+        });
+
+        console.log("\nContacts grouped by State:");
+        stateMap.forEach((contacts, state) => {
+            console.log(`\nState: ${state}`);
+            contacts.forEach(contact => console.log(contact));
+        });
+
     }
 }
 
@@ -82,26 +112,30 @@ try {
         "Jane", "Smith", "456 Elm St", "Los Angeles", "California", "654321", "9123456789", "jane.smith@example.com"
     );
 
-<<<<<<< HEAD
+
     let contactDuplicate = new Contact(
         "John", "Doe", "789 Oak St", "Chicago", "Illinois", "987654", "9012345678", "john.duplicate@example.com"
-=======
+
     let contact3 = new Contact(
         "Emily", "Clark", "789 Maple St", "New York", "NewYork", "789456", "9012345678", "emily.clark@example.com"
->>>>>>> UC8
+
+    let contact3 = new Contact(
+        "Emily", "Clark", "789 Maple St", "New York", "NewYork", "789456", "9012345678", "emily.clark@example.com"
+
     );
 
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
-<<<<<<< HEAD
+
     addressBook.addContact(contactDuplicate); // This should be blocked as a duplicate
 
     addressBook.displayContacts();
     addressBook.countContacts();
-=======
+
     addressBook.addContact(contact3);
 
     addressBook.displayContacts();
+
 
     console.log("\nSearching by City 'New York':");
     addressBook.searchByCity("New York");
@@ -109,7 +143,13 @@ try {
     console.log("\nSearching by State 'California':");
     addressBook.searchByState("California");
 
->>>>>>> UC8
+    console.log("\nViewing Contacts by City:");
+    addressBook.viewContactsByCity();
+
+    console.log("\nViewing Contacts by State:");
+    addressBook.viewContactsByState();
+
+
 } catch (error) {
     console.error(error.message);
 }
