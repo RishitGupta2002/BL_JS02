@@ -10,7 +10,10 @@ class AddressBook {
             throw new Error("Invalid contact. Must be an instance of Contact class.");
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> UC10
         let duplicate = this.contacts.some(
             (c) => c.firstName === contact.firstName && c.lastName === contact.lastName
         );
@@ -33,6 +36,7 @@ class AddressBook {
         }
     }
 
+<<<<<<< HEAD
     searchByCity(city) {
         let contactsInCity = this.contacts.filter(contact => contact.city.toLowerCase() === city.toLowerCase());
 
@@ -97,6 +101,32 @@ class AddressBook {
             contacts.forEach(contact => console.log(contact));
         });
 
+=======
+    getContactCountByCity() {
+        let cityCount = new Map();
+
+        this.contacts.forEach(contact => {
+            cityCount.set(contact.city, (cityCount.get(contact.city) || 0) + 1);
+        });
+
+        console.log("\nNumber of Contacts by City:");
+        cityCount.forEach((count, city) => {
+            console.log(`${city}: ${count}`);
+        });
+    }
+
+    getContactCountByState() {
+        let stateCount = new Map();
+
+        this.contacts.forEach(contact => {
+            stateCount.set(contact.state, (stateCount.get(contact.state) || 0) + 1);
+        });
+
+        console.log("\nNumber of Contacts by State:");
+        stateCount.forEach((count, state) => {
+            console.log(`${state}: ${count}`);
+        });
+>>>>>>> UC10
     }
 }
 
@@ -112,6 +142,7 @@ try {
         "Jane", "Smith", "456 Elm St", "Los Angeles", "California", "654321", "9123456789", "jane.smith@example.com"
     );
 
+<<<<<<< HEAD
 
     let contactDuplicate = new Contact(
         "John", "Doe", "789 Oak St", "Chicago", "Illinois", "987654", "9012345678", "john.duplicate@example.com"
@@ -122,20 +153,28 @@ try {
     let contact3 = new Contact(
         "Emily", "Clark", "789 Maple St", "New York", "NewYork", "789456", "9012345678", "emily.clark@example.com"
 
+=======
+    let contact3 = new Contact(
+        "Emily", "Clark", "789 Maple St", "New York", "NewYork", "789456", "9012345678", "emily.clark@example.com"
+>>>>>>> UC10
     );
 
     addressBook.addContact(contact1);
     addressBook.addContact(contact2);
+<<<<<<< HEAD
 
     addressBook.addContact(contactDuplicate); // This should be blocked as a duplicate
 
     addressBook.displayContacts();
     addressBook.countContacts();
 
+=======
+>>>>>>> UC10
     addressBook.addContact(contact3);
 
     addressBook.displayContacts();
 
+<<<<<<< HEAD
 
     console.log("\nSearching by City 'New York':");
     addressBook.searchByCity("New York");
@@ -149,6 +188,13 @@ try {
     console.log("\nViewing Contacts by State:");
     addressBook.viewContactsByState();
 
+=======
+    console.log("\nCounting Contacts by City:");
+    addressBook.getContactCountByCity();
+
+    console.log("\nCounting Contacts by State:");
+    addressBook.getContactCountByState();
+>>>>>>> UC10
 
 } catch (error) {
     console.error(error.message);
